@@ -87,7 +87,6 @@ spec:
           script: |
             #!/usr/bin/env sh
             source /workspace/source/.jx/variables.sh
-            env | sort
             jx promote -b --all-auto --timeout 1h --no-poll
         volumes:
         - name: npmrc
