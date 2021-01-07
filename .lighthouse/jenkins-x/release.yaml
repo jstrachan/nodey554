@@ -3,6 +3,7 @@ kind: PipelineRun
 metadata:
   annotations:
     lighthouse.jenkins-x.io/prependStepsURL: https://raw.githubusercontent.com/jstrachan/jx3-pipeline-catalog/db314b741b376ac90ec5e2ef877efd0bc9d51c97/tasks/git-clone/git-clone.yaml
+    mythingy: cheese
   name: release
 spec:
   pipelineSpec:
