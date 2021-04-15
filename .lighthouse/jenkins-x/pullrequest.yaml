@@ -11,7 +11,7 @@ spec:
       taskSpec:
         metadata: {}
         stepTemplate:
-          image: uses:jstrachan/jx3-pipeline-catalog/tasks/javascript/pullrequest.yaml@versionStream
+          image: uses:jenkins-x/jx3-pipeline-catalog/tasks/javascript/pullrequest.yaml@versionStream
           name: ""
           resources:
             requests:
@@ -19,7 +19,7 @@ spec:
               memory: 512Mi
           workingDir: /workspace/source
         steps:
-        - image: uses:jstrachan/jx3-pipeline-catalog/tasks/git-clone/git-clone-pr.yaml@db314b741b376ac90ec5e2ef877efd0bc9d51c97
+        - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone-pr.yaml@versionStream
           name: ""
           resources: {}
         - name: jx-variables
@@ -27,6 +27,8 @@ spec:
         - name: build-npm-install
           resources: {}
         - name: build-npm-test
+          resources: {}
+        - name: check-registry
           resources: {}
         - name: build-container-build
           resources: {}
