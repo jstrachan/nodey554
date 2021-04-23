@@ -24,6 +24,12 @@ spec:
           resources: {}
         - name: jx-variables
           resources: {}
+        - name: debug
+          image: ghcr.io/jenkins-x/jx-boot:3.2.55
+          script: |
+            #!/usr/bin/env sh
+            echo "VARIABLES:"
+            cat .jx/variables.sh
         - name: build-npm-install
           resources: {}
         - name: build-npm-test
