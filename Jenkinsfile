@@ -12,7 +12,7 @@ pipeline {
 
         echo "we have env vars $envVars"
 
-        withEnv(envVars) {
+        withEnv(envVars.split['\n']) {
           sh 'pwd'
 
           echo 'hermit env is $HERMIT_BIN'
