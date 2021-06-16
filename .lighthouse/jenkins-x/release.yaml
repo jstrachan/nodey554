@@ -20,12 +20,6 @@ spec:
         - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone.yaml@versionStream
           name: ""
           resources: {}
-        - image: ghcr.io/jenkins-x/jx-release-version:2.4.9
-          name: next-version
-          resources: {}
-          script: |
-            #!/usr/bin/env sh
-            jx-release-version --tag > VERSION
         - image: ghcr.io/jenkins-x/jx-boot:3.2.137
           name: jx-variables
           resources: {}
