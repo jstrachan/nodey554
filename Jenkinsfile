@@ -3,10 +3,12 @@ pipeline {
 
   stages {
     stage('Do stuff') {
-      steps{
-        echo 'starting'
-
+      environment {
         envVars = sh(returnStdout: true, script: './bin/hermit env --raw').trim()
+      }
+
+      steps {
+        echo 'starting'
 
         echo "we have env vars $envVars"
 
