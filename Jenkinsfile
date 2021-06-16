@@ -5,8 +5,17 @@ pipeline {
     stage('Do stuff') {
       steps{
         echo 'starting'
-        sh 'pwd'
-        sh 'ls -al'
+
+        envVars = sh(returnStdout: true, script: './bin/hermit env --raw').trim()
+
+        echo "we have env vars $envVars"
+
+        withEnv(envVars) {
+          sh 'pwd'
+
+          echo 'hermit env is $HERMIT_BIN'
+        }
+
         echo 'done'
       }
     }
