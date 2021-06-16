@@ -3,10 +3,12 @@ pipeline {
 
   stages {
     stage('Do stuff') {
-      echo 'starting'
-      sh 'pwd'
-      sh 'ls -al'
-      echo 'done'
+      steps{
+        echo 'starting'
+        sh 'pwd'
+        sh 'ls -al'
+        echo 'done'
+      }
     }
   }
 }
