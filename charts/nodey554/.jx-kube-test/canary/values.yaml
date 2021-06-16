@@ -1,0 +1,5 @@
+canary:
+  enabled: true
+
+hpa:
+  enabled: true

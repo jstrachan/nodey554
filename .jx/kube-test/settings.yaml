@@ -1,0 +1,19 @@
+apiVersion: kubetest.jenkins-x.io/v1alpha1
+kind: KubeTest
+spec:
+  #outputDir: build/reports
+  #format: tap
+  rules:
+  - charts:
+      dir: charts
+      recurse: true
+    tests:
+      kubeval:
+        args:
+        - --kubernetes-version=1.18.1
+        - --log-level
+        - warn
+        - --additional-schema-locations
+        - https://jenkins-x.github.io/jenkins-x-schemas
+        - --skip-kinds
+        - CustomResourceDefinition,Canary,Gateway,Service

@@ -21,7 +21,7 @@ spec:
           name: ""
           resources: {}
         - name: jfr
-          image: jenkinsci/jenkinsfile-runner-prepackaged
+          image: jenkins/jenkinsfile-runner
           resources: {}
   podTemplate: {}
   serviceAccountName: tekton-bot
