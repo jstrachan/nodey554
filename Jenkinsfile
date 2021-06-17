@@ -14,9 +14,8 @@ pipeline {
         withEnv([envVars]) {
           sh 'pwd'
 
+          sh 'echo the HERMIT_BIN = $HERMIT_BIN'
           sh 'env | sort'
-
-          echo 'hermit env is $env.HERMIT_BIN'
         }
 
         echo 'done'
