@@ -9,13 +9,13 @@ pipeline {
 
       steps {
         echo 'starting'
-        echo "we have env vars $envVars"
+        //echo "we have env vars $envVars"
 
         withEnv([envVars]) {
           sh 'pwd'
 
           sh 'echo the HERMIT_BIN = $HERMIT_BIN'
-          sh 'env | sort'
+          //sh 'env | sort'
         }
 
         echo 'done'
