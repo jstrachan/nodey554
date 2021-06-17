@@ -9,7 +9,6 @@ pipeline {
 
       steps {
         echo 'starting'
-
         echo "we have env vars $envVars"
 
         withEnv([envVars]) {
