@@ -4,12 +4,14 @@ pipeline {
   stages {
     stage('Do stuff') {
       environment {
-        envVars = sh(returnStdout: true, script: './bin/hermit env --raw').toString().trim().split("\n").toList()
+        text = sh(returnStdout: true, script: './bin/hermit env --raw')
+        envVars = text.trim().split('\n').toList()
+
       }
 
       steps {
         echo 'starting'
-        //echo "we have env vars $envVars"
+        echo "env vars = $envVars"
 
         withEnv(envVars) {
           sh 'pwd'
