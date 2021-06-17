@@ -5,7 +5,6 @@ pipeline {
     stage('Do stuff') {
       environment {
         hermitEnvVars = sh(returnStdout: true, script: './bin/hermit env --raw').trim()
-        version = ""
       }
 
       steps {
