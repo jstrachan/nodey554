@@ -11,7 +11,7 @@ pipeline {
         echo 'starting'
         //echo "we have env vars $envVars"
 
-        withEnv([envVars]) {
+        withEnv(envVars) {
           sh 'pwd'
 
           sh 'echo the HERMIT_BIN = $HERMIT_BIN so there'
