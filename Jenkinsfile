@@ -3,14 +3,13 @@ pipeline {
 
   stages {
     stage('Do stuff') {
-      environment {
-        text = sh(returnStdout: true, script: './bin/hermit env --raw')
-        envVars = text.trim().split('\n').toList()
-
-      }
-
       steps {
         echo 'starting'
+
+        text = sh(returnStdout: true, script: './bin/hermit env --raw')
+        envVars = text.trim().split('\n').toList()
+        
+        echo "env vars type = $envVars.class"
         echo "env vars = $envVars"
 
         withEnv(envVars) {
