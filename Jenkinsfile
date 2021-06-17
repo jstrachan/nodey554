@@ -12,7 +12,7 @@ pipeline {
         withEnv(hermitEnvVars.split('\n').toList()) {
 
           echo 'about to invoke yq'
-          sh 'yq version'
+          sh 'yq --version'
 
           echo 'done'
 
