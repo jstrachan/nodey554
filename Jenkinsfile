@@ -5,15 +5,17 @@ pipeline {
     stage('Do stuff') {
       environment {
         hermitEnvVars = sh(returnStdout: true, script: './bin/hermit env --raw').trim()
+        version = ""
       }
 
       steps {
         withCredentials([usernamePassword(credentialsId: '7ece71cf-5e9c-4778-9c61-83669674aa21', passwordVariable: 'GIT_TOKEN', usernameVariable: 'GIT_USER')]) {
           withEnv(hermitEnvVars.split('\n').toList()) {
-            sh '''                                                              
-              jx release version --tag > VERSION
-              VERSION=$(cat VERSION)
-  
+            withEnv(["VERSION=${sh(returnStdout: true, script: 'jx release version --tag').trim()}"]) {
+
+              sh 'echo the version is $VERISON'
+
+              sh '''                                                              
               echo "lets replace the helm chart version $VERSION"
               jx gitops yset -p version -v "$VERSION" ./charts/*/Chart.yaml
               jx gitops yset -p "image.tag" -v "$VERSION" ./charts/*/values.yaml
@@ -25,6 +27,7 @@ pipeline {
               git tag -fa v$VERSION -m "Release version $VERSION"
               git push --force origin v$VERSION
             '''
+            }
           }
         }
       }
