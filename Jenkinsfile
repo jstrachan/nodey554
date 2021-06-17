@@ -11,7 +11,7 @@ pipeline {
         // lets setup hermit
         withEnv(hermitEnvVars.split('\n').toList()) {
 
-          sh 'yq --version'
+          sh 'jx version'
 
           echo 'done'
         }
