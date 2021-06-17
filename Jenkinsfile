@@ -4,22 +4,21 @@ pipeline {
   stages {
     stage('Do stuff') {
       environment {
-        envVarText = sh(returnStdout: true, script: './bin/hermit env --raw').trim()
+        hermitEnvVars = sh(returnStdout: true, script: './bin/hermit env --raw').trim()
       }
 
       steps {
-        echo 'starting'
+        // lets setup hermit
+        withEnv(hermitEnvVars.split('\n').toList()) {
 
-        echo "env vars text = $envVarText"
+          echo 'about to invoke yq'
+          sh 'yq version'
 
-        withEnv(envVarText.split('\n').toList()) {
-          sh 'pwd'
+          echo 'done'
 
-          sh 'echo the HERMIT_BIN = $HERMIT_BIN so there'
+          //sh 'echo the HERMIT_BIN = $HERMIT_BIN so there'
           //sh 'env | sort'
         }
-
-        echo 'done'
       }
     }
   }
