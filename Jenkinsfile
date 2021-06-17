@@ -12,7 +12,7 @@ pipeline {
 
         echo "env vars text = $envVarText"
 
-        withEnv(envVarText.split('\n')) {
+        withEnv(envVarText.split('\n').toList()) {
           sh 'pwd'
 
           sh 'echo the HERMIT_BIN = $HERMIT_BIN so there'
