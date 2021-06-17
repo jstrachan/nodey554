@@ -10,10 +10,21 @@ pipeline {
       steps {
         // lets setup hermit
         withEnv(hermitEnvVars.split('\n').toList()) {
+          sh '''                                                              
+            jx release version --tag > VERSION
+            VERSION=$(cat VERSION)
 
-          sh 'jx version'
+            echo "lets replace the helm chart version $VERSION"
+            jx gitops yset -p version -v "$VERSION" ./charts/*/Chart.yaml
+            jx gitops yset -p "image.tag" -v "$VERSION" ./charts/*/values.yaml
 
-          echo 'done'
+
+            echo "now lets commit and push the new tag"
+            git add * || true
+            git commit -a -m "chore: release $VERSION" --allow-empty
+            git tag -fa v$VERSION -m "Release version $VERSION"
+            git push --force origin v$VERSION
+          '''
         }
       }
     }
