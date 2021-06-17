@@ -10,9 +10,9 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: '7ece71cf-5e9c-4778-9c61-83669674aa21', passwordVariable: 'GIT_TOKEN', usernameVariable: 'GIT_USER')]) {
           withEnv(hermitEnvVars.split('\n').toList()) {
-            withEnv(["VERSION=${sh(returnStdout: true, script: 'jx release version --tag').trim()}"]) {
+            withEnv(["VERSION=" + sh(returnStdout: true, script: 'jx release version --tag').trim()]) {
 
-              sh 'echo the version is $VERISON'
+              sh 'echo the version is $VERSION'
 
               sh '''                                                              
               echo "lets replace the helm chart version $VERSION"
