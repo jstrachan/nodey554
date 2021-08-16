@@ -37,8 +37,8 @@ spec:
           script: |
             #!/usr/bin/env sh
             source .jx/variables.sh
-            echo "sleeping2"
-            sleep 60000
+            echo "sleeping3"
+            sleep 1000
             echo "about to fail"
             crap
   podTemplate: {}
