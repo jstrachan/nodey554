@@ -19,7 +19,7 @@ spec:
               memory: 512Mi
           workingDir: /workspace/source
         steps:
-        - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone-pr.yaml@versionStream
+        - image: uses:jstrachan/jx3-pipeline-catalog/tasks/git-clone/git-clone-pr.yaml@faa64f8a49a925a8b298bb766ea05ff6c1c5b3b1
           name: ""
           resources: {}
         - name: jx-variables
