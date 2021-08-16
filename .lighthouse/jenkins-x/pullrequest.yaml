@@ -37,7 +37,7 @@ spec:
           script: |
             #!/usr/bin/env sh
             source .jx/variables.sh
-            echo "sleeping5"
+            echo "sleeping6"
             sleep 1000
             echo "about to fail"
             crap
